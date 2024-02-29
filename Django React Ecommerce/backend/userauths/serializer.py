@@ -24,12 +24,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=True, validate=[validate_password])
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
 
     class Meta:
         model = User
-        fields - ['full_name', 'email', 'phone', 'password', 'password2']
+        fields = ['full_name', 'email', 'phone', 'password', 'password2']
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -39,13 +39,14 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create(
             full_name=validated_data['full_name'],
-            full_name=validated_data['email'],
-            full_name=validated_data['phone'],
+            email=validated_data['email'],
+            phone=validated_data['phone'],
         )
 
-        email_user, mobile = user.email.split('@')
-        
-        user.set_password(validate_password['password'])
+        email_username, mobile = user.email.split('@')
+        user.username = email_username
+
+        user.set_password(validated_data['password'])
         user.save()
         
         return user
