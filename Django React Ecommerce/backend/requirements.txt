@@ -6,4 +6,5 @@ djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
 PyJWT==2.6.0
 pytz==2024.1
+shortuuid==1.0.12
 sqlparse==0.4.4
