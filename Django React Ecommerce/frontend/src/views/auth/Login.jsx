@@ -63,6 +63,7 @@ function Login() {
         <br />
         <button type='submit'>Login</button>
       </form>
+      <button onClick={resetForm}>Clear</button>
     </div>
   );
 }
