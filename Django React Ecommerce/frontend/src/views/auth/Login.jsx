@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  console.log(email);
+  //   console.log(email);
 
   useEffect(() => {
     if (isLoggedIn()) {
